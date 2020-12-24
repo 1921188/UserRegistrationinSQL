@@ -21,7 +21,7 @@ while($row=mysqli_fetch_array($res))
 
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Update Data</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -31,7 +31,8 @@ while($row=mysqli_fetch_array($res))
 <body>
 <div class="container">
 <div class="col-kg-4">
-  <h2>Vertical (basic) form</h2>
+  <h2>Update Data Form</h2>
+  <p>Retype the data you want to update</p>
   <form action="" name="form1" method="post">
     <div class="form-group">
       <label for="firstname">First name:</label>
@@ -80,9 +81,7 @@ if(isset($_POST["update"]))
 	mysqli_query($link,"update table1 set firstname='$_POST[firstname]',lastname='$_POST[lastname]',accesslevel='$_POST[accesslevel]',address='$_POST[address]',password='$_POST[password]' where id=$id");
 	
 	?>
-	<script type="text/javascript">
-	window.location="index.php";
-	</script>
+	<script type="text/javascript" src="editjsref.js"></script>
 	<?php
 }
 	?>

@@ -4,7 +4,7 @@ include "connection.php"
 
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>User Regitration Form</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -14,7 +14,8 @@ include "connection.php"
 <body>
 <div class="container">
 <div class="col-kg-4">
-  <h2>Vertical (basic) form</h2>
+  <h2>User Registration Form</h2>
+  <p>Please fill out the data needed</p>
   <form action="" name="form1" method="post">
     <div class="form-group">
       <label for="firstname">First name:</label>
@@ -47,27 +48,26 @@ include "connection.php"
 	
 	
     <button type="submit" name="insert" class="btn btn-default">Insert</button>
-	<button type="submit" name="update" class="btn btn-default">Update</button>
-	<button type="submit" name="delete" class="btn btn-default">Delete</button>
+
   </form>
 </div>
 </div>
 
 <div class="col-kg-12">
-<table class="table table-striped">
-    <thead>
-      <tr>
-		<th>#</th>
-        <th>Lastname</th>
-        <th>Firstname</th>
-        <th>Access Level</th>
-		<th>Address</th>
-		<th>Password</th>
-		<th></th>
-		<th></th>
-      </tr>
-    </thead>
-		<tbody>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Lastname</th>
+				<th>Firstname</th>
+				<th>Access Level</th>
+				<th>Address</th>
+				<th>Password</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+<tbody>
 			<?php
 			$res=mysqli_query($link,"select * from table1");
 			while($row=mysqli_fetch_array($res))
@@ -81,7 +81,6 @@ include "connection.php"
 				echo "<td>"; echo $row["password"]; echo "</td>";
 				echo "<td>"; ?> <a href="edit.php?id=<?php echo $row["id"]; ?>"><button type="button" class="btn btn-success">Edit</button></a> <?php echo "</td>";
 				echo "<td>"; ?>	<a href="delete.php?id=<?php echo $row["id"]; ?>"><button type="button" class="btn btn-danger">Delete</button></a> <?php echo "</td>";
-				
 				echo "</tr>";
 			}
 			?>
@@ -100,35 +99,10 @@ if(isset($_POST["insert"]))
 	mysqli_query($link,"INSERT INTO table1 value(NULL,'$_POST[lastname]','$_POST[firstname]','$_POST[accesslevel]','$_POST[address]', '$_POST[password]')");
 
 	?>
-	<script type="text/javascript">
-	window.location.href=window.location.href;
-	</script>
+	<script type="text/javascript" src="jsinsert.js"></script>
 	<?php
 	
 }
-
-if(isset($_POST["delete"]))
-{
-	mysqli_query($link,"delete from table1 where firstname='$_POST[firstname]'") or die(mysqli_error($link));
-?>
-	<script type="text/javascript">
-	window.location.href=window.location.href;
-	</script>
-	<?php
-	
-}
-
-if(isset($_POST["update"]))
-{
-	mysqli_query($link,"delete from table1 where firstname='$_POST[firstname]'") or die(mysqli_error($link));
-?>
-	<script type="text/javascript">
-	window.location.href=window.location.href;
-	</script>
-	<?php
-	
-}
-
 	?>
 
 </html>
